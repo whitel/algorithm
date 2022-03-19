@@ -4,9 +4,10 @@ a.out: main.cpp
 	@g++ main.cpp -O2 -fno-asm -Wall -lm -static -std=c++11 -lrt -Wl,--whole-archive -lpthread -Wl,--no-whole-archive
 
 run:
-	@echo "======Running======"
+	@echo "======Input======="
+	cat inputdata
+	@echo "======Output======"
 	@./a.out < inputdata
-	@echo "========End========"
 
 clean:
 	rm a.out
