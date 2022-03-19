@@ -5,7 +5,7 @@ a.out: main.cpp
 
 run:
 	@echo "======Running======"
-	@./a.out
+	@./a.out < inputdata
 	@echo "========End========"
 
 clean:
