@@ -4,13 +4,15 @@ using namespace std;
 class Solution {
 public:
     void run() {
-        cout << "hello world" << endl;
+        // core code here
     }
 
 };
 
 int main() {
     Solution s;
+    // input here
+
     s.run();
     return 0;
 }
