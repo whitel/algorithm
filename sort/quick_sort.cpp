@@ -4,7 +4,7 @@ using namespace std;
 class Solution {
 public:
     vector<int> sortArray(vector<int>& nums) {
-        quickSort(nums, 0, nums.size());
+        quickSort(nums, 0, nums.size() - 1);
         return nums;
     }
 
