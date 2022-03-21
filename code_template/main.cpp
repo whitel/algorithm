@@ -4,15 +4,17 @@ using namespace std;
 class Solution {
 public:
     void run() {
-        // core code here
+
     }
 
 };
 
 int main() {
+    freopen("inputdata", "r", stdin);
     Solution s;
-    // input here
 
+
+    
     s.run();
     return 0;
 }
