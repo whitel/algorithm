@@ -11,7 +11,7 @@ public:
     void quickSort(vector<int> &nums, int left, int right) {
         if(left < right) {
             int privotLoc = partition(nums, left, right);
-            quickSort(nums, left, privotLoc);
+            quickSort(nums, left, privotLoc - 1);
             quickSort(nums, privotLoc + 1, right);
         }
     }
