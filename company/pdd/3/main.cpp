@@ -1,61 +1,74 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+#define DEBUG
+
 class Solution {
+private:
+    vector<vector<int> > result;
+    vector<int> path;
+
 public:
-    void run(string B, int k, int left, int right) {
-        if(left == right) {
-            cout << A << endl;
-        }
-        if(B[left] == '0') {
-            // 无事可做，进入下一个判断
-            run(B, k, left+1, right);
-            return ;
-        }
-        if(B[left] == '1') {
-            // 看看左右是不是1
-            // 如果1 1
-            // 直接进入下一个循环
-            bool flag = false;
-            if(i-k >= 0 && A[i-k] == '1') {
-                    flag = true;
+    void run() {
+        /*
+            A:  001011
+            B:	101110
+        */
+        int k;
+        cin >> k;
+        string A, B;
+        cin >> B;
+        int n = B.size();
+        for(int i = 0; i < n; i++)
+            A.push_back('0');
+        
+        for(int i = 0; i < n; ++i) {
+            if(B[i] == '1') {
+                // 先排除掉已经有1的情况
+                bool flagA = false;
+                bool flagB = false;
+                if(i - k >= 0 && A[i-k] == '1')
+                    flagA = true;
+                if(i + k < n && A[i+k] == '1')
+                    flagB = true;
+                if(flagA || flagB)
+                    continue;
+                // 剩下情况都是没有1的，准备填充1，分3种情况（不可能都碰不到，因为那样B[i]不可能为1）
+                // 左边碰得到，右边碰不到：填到左边
+                if(i - k >= 0 && i + k >= n) {
+                    A[i-k] = '1';
+                }
+                // 左边碰不到，右边碰得到：填到右边
+                else if(i - k < 0 && i + k < n) {
+                    A[i+k] = '1';
+                }
+                // 左边碰得到，右边碰得到：填到右边
+                else if(i - k >= 0 && i + k < n) {
+                    A[i+k] = '1';
+                }
             }
-            if(i+k < right && A[i+k] == '1') {
-                    flag = true;
-            }
-            // 如果1 0
-            // 如果0 1
-            // 如果0 0
         }
-
+        cout << "A : " << A << endl;
+        cout << "B : " << B << endl;
     }
-
 };
 
 int main() {
+#ifdef DEBUG
+    freopen("inputdata", "r", stdin);
+    cout << "===========INPUT=============" << endl;
+    system("cat inputdata");
+    cout << endl;
+    cout << "===========OUTPUT============" << endl;
+ #endif
+
     Solution s;
-    // input here
-    int k;
-    cin >> k;
-    string B;
-    cin >> B;
-    string A;
-    for(int i = 0; i < B.size(); ++i)
-        A += '0';
-
-    for(int i = 0; i < B.size(); ++i) {
-        if(B[i] == '1') {
-            if(i - k >= 0) {
-                A[i-k] = '1';
-            }
-            if(i + k < B.size()) {
-                A[i+k] = '1';
-            }
-        }
-    }
-
-
-    cout << A << endl;
     s.run();
+
+#ifdef DEBUG
+    cout << "============END==============" << endl;
+#endif
     return 0;
 }
+
+
