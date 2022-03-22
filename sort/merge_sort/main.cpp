@@ -26,7 +26,9 @@ public:
     }
 
     void merge(vector<int> &nums, int left, int mid, int right) {
+        // 注意这里要+1，因为mid取得到
         int subArrayA = mid - left + 1;
+        // 注意这里不+1，因为mid是取不到的（上面已经取过了）
         int subArrayB = right - mid;
 
         // 创建temp数组
@@ -45,26 +47,19 @@ public:
         // 合并两个有序数组
         while(indexA < subArrayA && indexB < subArrayB) {
             if(NumsA[indexA] <= NumsB[indexB]) {
-                nums[indexC] = NumsA[indexA];
-                indexA++;
+                nums[indexC++] = NumsA[indexA++];
             } else {
-                nums[indexC] = NumsB[indexB];
-                indexB++;
+                nums[indexC++] = NumsB[indexB++];
             }
-            indexC++;
         }
 
         // 合并剩下的数组
         while(indexA < subArrayA) {
-            nums[indexC] = NumsA[indexA];
-            indexA++;
-            indexC++;
+            nums[indexC++] = NumsA[indexA++];
         }
 
         while(indexB < subArrayB) {
-            nums[indexC] = NumsB[indexB];
-            indexB++;
-            indexC++;
+            nums[indexC++] = NumsB[indexB++];
         }
     }
 
