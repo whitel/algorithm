@@ -10,35 +10,33 @@ public:
 
     void heapSort(vector<int>& nums) {
         buildingHeap(nums, nums.size());
-        for(int i = nums.size() - 1; i > 0; i--) {
+        for(int i = nums.size() - 1; i > 0; --i) {
             swap(nums[i], nums[0]);
             adjustHeap(nums, 0, i);
         }
     }
     
+    // 构建大根堆
     void buildingHeap(vector<int>& nums, int length) {
-        for(int i = (length - 1) / 2; i >= 0; i--) {
+        for(int i = (length - 1) / 2; i >= 0; --i) {
             adjustHeap(nums, i, length);
         }
     }
-
+    
     void adjustHeap(vector<int>& nums, int s, int length) {
         int child = 2 * s + 1; // left child
         while(child < length) {
-            int temp = nums[s];
             // 从左右孩子中选比较大的那个
             if(child + 1 < length && nums[child] < nums[child+1])
                 child++;
             // 用比较大的那个跟父节点进行比较，把大的换上去
             if(nums[s] < nums[child]) {
-                nums[s] = nums[child];
+                swap(nums[s], nums[child]);
                 s = child;
                 child = 2 * s + 1;
             } else {
                 break;
             }
-            // 把原本的父节点放回大孩子的位置
-            nums[s] = temp;
         }
     }
 
