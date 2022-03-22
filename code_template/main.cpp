@@ -18,7 +18,7 @@ int main() {
     system("cat inputdata");
     cout << endl;
     cout << "===========OUTPUT============" << endl;
- #endif
+#endif
 
     Solution s;
     s.run();
